@@ -4,6 +4,7 @@ Performs overall analysis and section by section analysis
 """
 import os
 import collections
+import inflect
 import nltk
 import json
 from itertools import groupby
@@ -13,6 +14,7 @@ from nltk.corpus import stopwords
 
 tokenizer = RegexpTokenizer(r'\w+')
 stop_words = set(stopwords.words('english'))
+p = inflect.engine()
 
 def generate_lexicon(lex_filename):
     """
@@ -68,12 +70,23 @@ def generate_profile(text):
             tokens = tokenizer.tokenize(sections[x][y])
             tokens = [word.lower() for word in tokens]
             for word in tokens:
+                if word in filtered_words:
+                    continue
+
                 if word in stop_words:
                     filtered_stopwords.append(word)
                     continue
-                
+                             
                 else:
                     word_count += 1
+
+                if word not in lexicon:
+                    ow = word
+                    if p.singular_noun(ow) in lexicon:
+                        word = p.singular_noun(ow)
+
+                    if p.plural(word) in lexicon:
+                        word = p.plural(ow)
                 
                 if word in lexicon:
                     word_used += 1
