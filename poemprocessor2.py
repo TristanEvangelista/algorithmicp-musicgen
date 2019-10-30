@@ -55,6 +55,7 @@ def generate_profile(text):
     """
     word_count = 0
     word_used = 0
+    found_words = []
     filtered_stopwords = []
     filtered_words = []
     overall = {}
@@ -90,6 +91,7 @@ def generate_profile(text):
                 
                 if word in lexicon:
                     word_used += 1
+                    found_words.append(word)
                     for key in lexicon[word]:
                         if key in section_profile:
                             section_profile[key] += int(lexicon[word][key])
@@ -108,13 +110,15 @@ def generate_profile(text):
 
     print("Filtered stopwords")
     print(filtered_stopwords)
+    print("Found words")
+    print(found_words)
     print("Words not in lexicon")
     print(filtered_words)
     print(word_used, " out of ", word_count, "words.")
     return (overall, profile)
 
 lexicon = generate_lexicon("lexicon.txt")
-text = get_poem("poem-1.txt")
+text = get_poem("test-poem.txt")
 
 overall, profile = generate_profile(text)
 overall.pop("positive")
@@ -133,7 +137,8 @@ for idx, p in enumerate(profile):
     sorted_dict = collections.OrderedDict(sorted_profile)
 
     print("The top emotion for section # ", idx+1, " is: ", list(sorted_dict)[0])
-    emotions.append(list(sorted_dict)[0])
+    top_emotion = list(sorted_dict)[0]
+    emotions.append((top_emotion, sorted_dict.get(top_emotion)))
 
 print(sorted_profile)
 overall_emo = list(sorted_dict)[0]
@@ -141,9 +146,25 @@ print("The overall emotion is: ", overall_emo)
 
 emotion_profiles = {}
 emotion_profiles["overall"] = overall
-with open('data.txt', 'w') as outfile:
-    for idx, s in enumerate(profile):
-        emotion_profiles["section#" + str(idx+1)] = s
+# with open('data.txt', 'w') as outfile:
+#     for idx, s in enumerate(profile):
+#         emotion_profiles["section#" + str(idx+1)] = s
 
-    print(emotion_profiles)
-    json.dump(emotion_profiles, outfile)
+#     print(emotion_profiles)
+#     json.dump(emotion_profiles, outfile)
+
+# for idx, s in enumerate(profile):
+
+with open('parameters.txt', 'w') as outfile:
+    outfile.write(str(len(profile)))
+    outfile.write("\n")
+    outfile.write("\n")
+    for e in overall:
+        outfile.write(e + " " + str(overall.get(e)))
+        outfile.write("\n")
+
+    outfile.write("\n")
+    for emotion in emotions:
+        emo, value = emotion
+        outfile.write(emo + " " + str(value))
+        outfile.write("\n")
