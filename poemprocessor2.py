@@ -118,7 +118,7 @@ def generate_profile(text):
     return (overall, profile)
 
 lexicon = generate_lexicon("lexicon.txt")
-text = get_poem("test-poem.txt")
+text = get_poem("poem-1.txt")
 
 overall, profile = generate_profile(text)
 overall.pop("positive")
@@ -168,3 +168,6 @@ with open('parameters.txt', 'w') as outfile:
         emo, value = emotion
         outfile.write(emo + " " + str(value))
         outfile.write("\n")
+
+
+        

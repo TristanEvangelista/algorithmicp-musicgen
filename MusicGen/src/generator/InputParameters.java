@@ -4,14 +4,14 @@ public class InputParameters {
 	private String name;
 	private int numSections;
 	private String[] emotions;
-	private int[] intensities;
+	private int[] intensity;
 	private int totalEmotions;
 	
-	public InputParameters(String name, int numSections, String[] emotions, int[] intensities, int totalEmotions) {
+	public InputParameters(String name, int numSections, String[] emotions, int[] intensity, int totalEmotions) {
 		this.name = name;
 		this.numSections = numSections;
 		this.emotions = emotions;
-		this.intensities = intensities;
+		this.intensity = intensity;
 		this.totalEmotions = totalEmotions;
 	}
 
@@ -40,11 +40,11 @@ public class InputParameters {
 	}
 
 	public int[] getIntensities() {
-		return intensities;
+		return intensity;
 	}
 
 	public void setIntensities(int[] intensities) {
-		this.intensities = intensities;
+		this.intensity = intensities;
 	}
 
 	public int getTotalEmotions() {

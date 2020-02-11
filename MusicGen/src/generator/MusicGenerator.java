@@ -37,10 +37,9 @@ public class MusicGenerator {
 	
 	}
 	
-	public void saveMusic() {		
-		
+	public void saveMusic(String name) {		
 		try {
-			MidiFileManager.savePatternToMidi(getMusic(), new File(params.getName()+".midi"));
+			MidiFileManager.savePatternToMidi(getMusic(), new File(name+".midi"));
 		      
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -311,7 +310,7 @@ public class MusicGenerator {
 		
 		for(int i = 0; i < emotions.length; i++) {
 			System.out.println(emotions[i]);
-			for(int j = 0; j < intensities[i]; j++) {
+			for(int j = 0; j < 1; j++) {
 				musicString += generatePatternFromEmotion(emotions[i]);
 				musicString += "| ";
 				System.out.println(emotions[i]);

@@ -184,9 +184,9 @@ def generate_profile(text):
     return (overall, profile)
 
 lexicon = generate_lexicon("lexicon.txt")
-text = get_poem("fe.txt")
+text = get_poem("sample1-Tyger.txt")
 
-syllableList = getSyllables(text)
+#syllableList = getSyllables(text)
 
 overall, profile = generate_profile(text)
 overall.pop("positive")
@@ -249,9 +249,9 @@ with open('data.json', 'w', encoding='utf-8') as f:
         sectionintensity.append(value)
     data["emotions"] = sectionemotions
     data["intensity"] = sectionintensity
-    data["syllables"] = syllableList
-    data["rests"] = 0
-    data["locationsofRest"] = 0
+    #data["syllables"] = syllableList
+    #data["rests"] = 0
+    #data["locationsofRest"] = 0
     print(data)
     for idx, s in enumerate(profile):
         emotion_profiles["section#" + str(idx+1)] = s
