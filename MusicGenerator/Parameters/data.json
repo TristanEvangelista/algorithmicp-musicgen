@@ -1,0 +1,29 @@
+{
+    "numSections": 6,
+    "overall": [
+        3,
+        10,
+        2,
+        11,
+        7,
+        4,
+        2,
+        10
+    ],
+    "emotions": [
+        "fear",
+        "anticipation",
+        "anticipation",
+        "fear",
+        "joy",
+        "trust"
+    ],
+    "intensity": [
+        1,
+        3,
+        3,
+        3,
+        3,
+        2
+    ]
+}
