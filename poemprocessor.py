@@ -114,7 +114,7 @@ def get_poem(filename):
 
 # Poem accessing
 
-def generate_profile(text):
+def generate_profile(text, lexicon):
     """
     Text analysis on poem
     Returns overall and section by section profile
@@ -180,85 +180,65 @@ def generate_profile(text):
     print(found_words)
     print("Words not in lexicon")
     print(filtered_words)
-    print(word_used, " out of ", word_count, "words.")
+    print("Used: ", word_used, " out of ", word_count, "words.", word_used/word_count)
     return (overall, profile)
 
-lexicon = generate_lexicon("lexicon.txt")
-text = get_poem("sample1-Tyger.txt")
+def main():
+    lexicon = generate_lexicon("lexicon.txt")
+    text = get_poem("poem-1.txt")
 
-#syllableList = getSyllables(text)
+    overall, profile = generate_profile(text,lexicon)
+    overall.pop("positive")
+    overall.pop("negative")
 
-overall, profile = generate_profile(text)
-overall.pop("positive")
-overall.pop("negative")
+    emotions = []
 
-emotions = []
-
-sorted_profile = sorted(overall.items(), key=lambda kv: kv[1], reverse = True)
-sorted_dict = collections.OrderedDict(sorted_profile)
-
-
-for idx, p in enumerate(profile):
-    p.pop("positive")
-    p.pop("negative")
-    sorted_profile = sorted(p.items(), key=lambda kv: kv[1], reverse = True)
+    # sort the emotions by its count to get the overall emotion
+    sorted_profile = sorted(overall.items(), key=lambda kv: kv[1], reverse = True)
     sorted_dict = collections.OrderedDict(sorted_profile)
 
-    print("The top emotion for section # ", idx+1, " is: ", list(sorted_dict)[0])
-    top_emotion = list(sorted_dict)[0]
-    emotions.append((top_emotion, sorted_dict.get(top_emotion)))
+    # Get the top emotion from each section
+    for idx, p in enumerate(profile):
+        p.pop("positive")
+        p.pop("negative")
+        sorted_profile = sorted(p.items(), key=lambda kv: kv[1], reverse = True)
+        sorted_dict = collections.OrderedDict(sorted_profile)
 
-print(sorted_profile)
-overall_emo = list(sorted_dict)[0]
-print("The overall emotion is: ", overall_emo)
-print(text)
+        print("The top emotion for section # ", idx+1, " is: ", list(sorted_dict)[0])
+        top_emotion = list(sorted_dict)[0]
+        emotions.append((top_emotion, sorted_dict.get(top_emotion)))
 
-emotion_profiles = {}
-emotion_profiles["overall"] = overall
+    print(sorted_profile)
+    overall_emo = list(sorted_dict)[0]
+    print("The overall emotion is: ", overall_emo)
 
-with open('parameters.txt', 'w') as outfile:
-    outfile.write(str(len(profile)))
-    outfile.write("\n")
-    outfile.write("\n")
-    for e in overall:
-        outfile.write(e + " " + str(overall.get(e)))
-        outfile.write("\n")
+    emotion_profiles = {}
+    emotion_profiles["overall"] = overall
 
-    outfile.write("\n")
-    for emotion in emotions:
-        emo, value = emotion
-        outfile.write(emo + " " + str(value))
-        outfile.write("\n")
+    with open('data.json', 'w', encoding='utf-8') as f:
+        data = {}
+        data["numSections"] = len(profile)
+        emotion_list = []
 
+        for e in overall:
+            emotion_list.append(overall.get(e))
 
-with open('data.json', 'w', encoding='utf-8') as f:
-    data = {}
-    data["numSections"] = len(profile)
-    emotionlist = []
-    for e in overall:
-        emotionlist.append(overall.get(e))
-    print(overall)
-    data["overall"] = emotionlist
+        print(overall)
+        data["overall"] = emotion_list
 
-    sectionemotions = []
-    sectionintensity = []
+        section_emotions = []
+        section_intensity = []
 
-    for emotion in emotions:
-        emo, value = emotion
-        sectionemotions.append(emo)
-        sectionintensity.append(value)
-    data["emotions"] = sectionemotions
-    data["intensity"] = sectionintensity
-    #data["syllables"] = syllableList
-    #data["rests"] = 0
-    #data["locationsofRest"] = 0
-    print(data)
-    for idx, s in enumerate(profile):
-        emotion_profiles["section#" + str(idx+1)] = s
-    #print(emotion_profiles)
+        for emotion in emotions:
+            emo, value = emotion
+            section_emotions.append(emo)
+            section_intensity.append(value)
 
-    json.dump(data, f, ensure_ascii=False, indent=4)
-
-
-
+        data["emotions"] = section_emotions
+        data["intensity"] = section_intensity
+        print(data)
         
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+if __name__ == '__main__':
+    main()
