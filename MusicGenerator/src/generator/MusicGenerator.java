@@ -51,179 +51,66 @@ public class MusicGenerator {
 		System.out.println("Currently playing " + getMusic().toString());
 	}
 		
-	public String createJoyPattern() {
-		String pattern = "";
+	// public String createJoyPattern() {
+	// 	String pattern = "";
 	 
-		// select the 2 pitches by random
+	// 	// select the 2 pitches by random
 		
-		Random rand = new Random();
+	// 	Random rand = new Random();
 		
 		
-		String firstPitch = pitches[rand.nextInt(7)];
-		String secondPitch = pitches[rand.nextInt(7)];
+	// 	String firstPitch = pitches[rand.nextInt(7)];
+	// 	String secondPitch = pitches[rand.nextInt(7)];
 		
-		// select the chord
+	// 	// select the chord
 		
-		Chord firstChord = MusicUtil.generateJoyChord(firstPitch);
-		Chord secondChord = MusicUtil.generateJoyChord(secondPitch);
+	// 	Chord firstChord = MusicUtil.generateJoyChord(firstPitch);
+	// 	Chord secondChord = MusicUtil.generateJoyChord(secondPitch);
 		
-		String firstChordDuration = "";
-		String secondChordDuration = "";
+	// 	String firstChordDuration = "";
+	// 	String secondChordDuration = "";
 		
-		List<Note> firstNotes = MusicUtil.getChordNotes(firstChord);
-		List<Note> secondNotes = MusicUtil.getChordNotes(secondChord);
+	// 	List<Note> firstNotes = MusicUtil.getChordNotes(firstChord);
+	// 	List<Note> secondNotes = MusicUtil.getChordNotes(secondChord);
 		
-		for (int i = 0; i < firstNotes.size(); i++) {
-			pattern += firstNotes.get(i).getPattern().toString();
-			if(i < firstNotes.size() - 1) {
-				pattern += "q_";
-			}
-			else {
-				pattern += "q";
-			}
-			firstChordDuration += "q";
+	// 	for (int i = 0; i < firstNotes.size(); i++) {
+	// 		pattern += firstNotes.get(i).getPattern().toString();
+	// 		if(i < firstNotes.size() - 1) {
+	// 			pattern += "q_";
+	// 		}
+	// 		else {
+	// 			pattern += "q";
+	// 		}
+	// 		firstChordDuration += "q";
 
-		}
+	// 	}
 		
-		pattern += "+" + firstChord.toString() + firstChordDuration;
-		pattern += " ";
+	// 	pattern += "+" + firstChord.toString() + firstChordDuration;
+	// 	pattern += " ";
 		
 
 		
-		for (int i = 0; i < secondNotes.size(); i++) {
-			pattern += secondNotes.get(i).getPattern().toString();
-			if(i < secondNotes.size() - 1) {
-				pattern += "q_";
-			}
-			else {
-				pattern += "q";
-			}
+	// 	for (int i = 0; i < secondNotes.size(); i++) {
+	// 		pattern += secondNotes.get(i).getPattern().toString();
+	// 		if(i < secondNotes.size() - 1) {
+	// 			pattern += "q_";
+	// 		}
+	// 		else {
+	// 			pattern += "q";
+	// 		}
 			
-			secondChordDuration += "q";
-		}
+	// 		secondChordDuration += "q";
+	// 	}
 		
-		pattern += "+" + secondChord.toString() + secondChordDuration;
-		pattern += " ";
+	// 	pattern += "+" + secondChord.toString() + secondChordDuration;
+	// 	pattern += " ";
 		
-		return pattern;
-	}
-	
-	
-	public String createSadPattern() {
-		String pattern = "";
-	 
-		// select the 2 pitches by random
-		
-		Random rand = new Random();
-		
-		
-		String firstPitch = pitches[rand.nextInt(7)];
-		String secondPitch = pitches[rand.nextInt(7)];
-		
-		// select the chord
-		
-		Chord firstChord = MusicUtil.generateSadChord(firstPitch);
-		Chord secondChord = MusicUtil.generateSadChord(secondPitch);
-		
-		int firstChordDuration = 0;
-		int secondChordDuration = 0;
-		
-		List<Note> firstNotes = MusicUtil.getChordNotes(firstChord);
-		List<Note> secondNotes = MusicUtil.getChordNotes(secondChord);
-		
-		for (int i = 0; i < firstNotes.size(); i++) {
-			pattern += firstNotes.get(i).getPattern().toString();
-			if(i < firstNotes.size() - 1) {
-				pattern += "q_";
-			}
-			else {
-				pattern += "q";
-			}
-		}
-		
-		pattern += "+" + firstChord.toString() + "w";
-		pattern += " ";
-		
-
-		
-		for (int i = 0; i < secondNotes.size(); i++) {
-			pattern += secondNotes.get(i).getPattern().toString();
-			if(i < secondNotes.size() - 1) {
-				pattern += "q_";
-			}
-			else {
-				pattern += "q";
-			}
-		}
-		
-		pattern += "+" + secondChord.toString() + "w";
-		pattern += " ";
-
-		
-		return pattern;
-	}
-	
-	public String createFearPattern() {
-		String pattern = "";
-	 
-		// select the 2 pitches by random
-		
-		Random rand = new Random();
-		
-		
-		String firstPitch = pitches[rand.nextInt(7)];
-		String secondPitch = pitches[rand.nextInt(7)];
-		
-		// select the chord
-		
-		Chord firstChord = MusicUtil.generateFearChord(firstPitch);
-		Chord secondChord = MusicUtil.generateFearChord(secondPitch);
-		
-		String firstChordDuration = "";
-		String secondChordDuration = "";
-		
-		List<Note> firstNotes = MusicUtil.getChordNotes(firstChord);
-		List<Note> secondNotes = MusicUtil.getChordNotes(secondChord);
-		
-		for (int i = 0; i < firstNotes.size(); i++) {
-			pattern += firstNotes.get(i).getPattern().toString();
-			if(i < firstNotes.size() - 1) {
-				pattern += "q_";
-			}
-			else {
-				pattern += "q";
-			}
-			firstChordDuration += "q";
-
-		}
-		
-		pattern += "+" + firstChord.toString() + firstChordDuration;
-		pattern += " ";
-		
-
-		
-		for (int i = 0; i < secondNotes.size(); i++) {
-			pattern += secondNotes.get(i).getPattern().toString();
-			if(i < secondNotes.size() - 1) {
-				pattern += "q_";
-			}
-			else {
-				pattern += "q";
-			}
-			
-			secondChordDuration += "q";
-		}
-		
-		pattern += "+" + secondChord.toString() + secondChordDuration;
-		pattern += " ";
-		
-		return pattern;
-	}
+	// 	return pattern;
+	// }
 	
 	public Chord generateChordFromEmotion(String emotion, String pitch) {
 		switch(emotion) {
 		case "joy":
-			System.out.println("joy");
 			return MusicUtil.generateJoyChord(pitch);
 		case "sadness":
 			return MusicUtil.generateSadChord(pitch);
@@ -233,9 +120,14 @@ public class MusicGenerator {
 			return MusicUtil.generateAnticipationChord(pitch);
 		case "anger":
 			return MusicUtil.generateAngerChord(pitch);
+		case "surprise":
+			return MusicUtil.generateSurpriseChord(pitch);
+		case "trust":
+			return MusicUtil.generateTrustChord(pitch);
+		case "disgust":
+			return MusicUtil.generateDisgustChord(pitch);
 		default:
 			return MusicUtil.generateJoyChord(pitch);
-			
 		}
 	}
 	public String generatePatternFromEmotion(String emotion) {
@@ -260,42 +152,83 @@ public class MusicGenerator {
 		
 		List<Note> firstNotes = MusicUtil.getChordNotes(firstChord);
 		List<Note> secondNotes = MusicUtil.getChordNotes(secondChord);
-		
-		for (int i = 0; i < firstNotes.size(); i++) {
-			pattern += firstNotes.get(i).getPattern().toString();
-			if(i < firstNotes.size() - 1) {
-				pattern += "q_";
-			}
-			else {
-				pattern += "q";
-			}
-			firstChordDuration += "q";
 
+		switch(emotion) {
+		case "trust":
+			for(Note note1 : firstNotes){
+				note1 = MusicUtil.changeOctave(note1, 1);
+			}
+			for(Note note2 : secondNotes){
+				note2 = MusicUtil.changeOctave(note2, 1);
+			}
+			break;
+		default:
+			break;
 		}
-		
-		firstChordDuration = "w";
-		
-		pattern += "+" + firstChord.toString() + firstChordDuration;
-		pattern += " ";
-		
 
-		
-		for (int i = 0; i < secondNotes.size(); i++) {
-			pattern += secondNotes.get(i).getPattern().toString();
-			if(i < secondNotes.size() - 1) {
-				pattern += "q_";
+		//this is for emotions that dont 
+		switch(emotion) {
+		case "surprise":
+			for (int i = 0; i < firstNotes.size(); i++) {
+				pattern += firstNotes.get(i).getPattern().toString();
+				if(i < firstNotes.size() - 1) {
+					pattern += "I_";
+				}
+				else {
+					pattern += "I";
+				}
+				firstChordDuration += "I";
 			}
-			else {
-				pattern += "q";
-			}
+			firstChordDuration = "q";
+			pattern += "+" + firstChord.toString() + firstChordDuration;
+			pattern += " ";
 			
-			secondChordDuration += "q";
+			for (int i = 0; i < secondNotes.size(); i++) {
+				pattern += secondNotes.get(i).getPattern().toString();
+				if(i < secondNotes.size() - 1) {
+					pattern += "I_";
+				}
+				else {
+					pattern += "I";
+				}
+				
+				secondChordDuration += "I";
+			}
+			secondChordDuration = "q";
+			pattern += "+" + secondChord.toString() + secondChordDuration;
+			pattern += " ";
+			break;
+		default:
+			for (int i = 0; i < firstNotes.size(); i++) {
+				pattern += firstNotes.get(i).getPattern().toString();
+				if(i < firstNotes.size() - 1) {
+					pattern += "q_";
+				}
+				else {
+					pattern += "q";
+				}
+				firstChordDuration += "q";
+			}
+			firstChordDuration = "w";
+			pattern += "+" + firstChord.toString() + firstChordDuration;
+			pattern += " ";
+			
+			for (int i = 0; i < secondNotes.size(); i++) {
+				pattern += secondNotes.get(i).getPattern().toString();
+				if(i < secondNotes.size() - 1) {
+					pattern += "q_";
+				}
+				else {
+					pattern += "q";
+				}
+				
+				secondChordDuration += "q";
+			}
+			secondChordDuration = "w";
+			pattern += "+" + secondChord.toString() + secondChordDuration;
+			pattern += " ";
+			break;
 		}
-		
-		secondChordDuration = "w";
-		
-		pattern += "+" + secondChord.toString() + secondChordDuration;
-		pattern += " ";
 		
 		return pattern;
 	}
@@ -305,26 +238,17 @@ public class MusicGenerator {
 		String musicString = "R R R R ";
 		String[] emotions = params.getEmotions();
 		int[] intensities = params.getIntensities();
-		
 		// each section is repeated by the number of the intensity
 		
 		for(int i = 0; i < emotions.length; i++) {
-			System.out.println(emotions[i]);
+			//System.out.println(emotions[i]);
 			for(int j = 0; j < 1; j++) {
 				musicString += generatePatternFromEmotion(emotions[i]);
 				musicString += "| ";
-				System.out.println(emotions[i]);
+				//System.out.println(emotions[i]);
 				System.out.println("creating " + emotions[i] + " pattern");
-				
 			}
 		}
-				
-		
 		setMusic(new Pattern(musicString));
-
-	
 	}
-	
-	
-	
 }

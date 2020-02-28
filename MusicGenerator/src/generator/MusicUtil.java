@@ -49,13 +49,35 @@ public class MusicUtil {
 		Chord chord = new Chord(chordString);
 		return new Chord(chord);
 	}
+
+		
+	static Chord generateSurpriseChord(String root) {
+
+		String chordString = root + "maj";
+		Chord chord = new Chord(chordString);
+		return new Chord(chord);
+	}
+
+		
+	static Chord generateDisgustChord(String root) {
+
+		String chordString = root + "min9";
+		Chord chord = new Chord(chordString);
+		return new Chord(chord);
+	}
+
+		
+	static Chord generateTrustChord(String root) {
+
+		String chordString = root + "maj";
+		Chord chord = new Chord(chordString);
+		return new Chord(chord);
+	}
 	
 	static Note changeOctave(Note note, int delta) {
 		int original = note.getValue();
 		int newOctave = original + delta * 12;
-		
 		return new Note(newOctave);
-		
 	}
 	
 	public static List<Note> getChordNotes(Chord chord) {
@@ -82,7 +104,7 @@ public class MusicUtil {
 		String pattern = "";
 		Intervals in = Chord.chordMap.get(chord.getChordType());
 		
-		System.out.println(chord.getChordType());
+		//System.out.println(chord.getChordType());
 		in.setRoot(changeOctave(chord.getRoot(), 2));
 		List<Note> notes = in.getNotes();
 
@@ -97,7 +119,7 @@ public class MusicUtil {
 			}
 			
 		}
-		System.out.println("The melody is: " + pattern.toString());
+		//System.out.println("The melody is: " + pattern.toString());
 			
 		return pattern;
 		
