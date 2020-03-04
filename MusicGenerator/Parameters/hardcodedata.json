@@ -1,0 +1,33 @@
+{
+    "numSections": 8,
+    "totalEmotions": [
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7,
+        7
+    ],
+    "emotions": [
+        "joy",
+	"trust",
+	"surprise",
+        "sadness",
+        "fear",
+        "anticipation",
+        "anger",
+        "disgust"
+    ],
+    "intensity": [
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3,
+        3
+    ]
+}
