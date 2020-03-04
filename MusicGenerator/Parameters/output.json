@@ -1,7 +1,0 @@
-{
-	"name": "hello",
-	"numSections": 3,
-	"totalEmotions": 50,
-	"emotions": ["joy", "sadness", "anticipation"],
-	"intensities": [3, 1, 5]
-}
